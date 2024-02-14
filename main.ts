@@ -29,16 +29,16 @@ puppeteer
         try {
             // Perform login, wait for user input
             LOG('Navigating to login page.')
-            await page.goto('https://www.publix.com/login?redirectUrl=/')
+            await page.goto('https://www.publix.com/login?redirectUrl=/savings/digital-coupons')
+            LOG('Waiting for user login.')
             await page.waitForNavigation()
 
             // Navigate to coupons
-            LOG('Navigating to coupons page.')
-            await page.goto('https://www.publix.com/savings/digital-coupons')
+            LOG('Waiting for coupon page load.')
             await page.waitForSelector('button[data-qa-automation="back-to-top-button"]')
 
             // Load all the coupons
-            LOG('Loading all the coupons')
+            LOG('Loading all the coupons.')
             while (1) {
                 let button = await page.$('button[data-qa-automation="button-Load more"]')
                 if (button) {
@@ -49,7 +49,7 @@ puppeteer
             }
 
             // Click all the coupons
-            LOG('Clicking all the coupons')
+            LOG('Clicking all the coupons.')
             let buttons = await page.$$('button[data-qa-automation="button-Clip coupon"]')
             for (const button of buttons) {
                 await button.click()
