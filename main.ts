@@ -31,11 +31,11 @@ puppeteer
             LOG('Navigating to login page.')
             await page.goto('https://www.publix.com/login?redirectUrl=/savings/digital-coupons')
             LOG('Waiting for user login.')
-            await page.waitForNavigation()
+            await page.waitForNavigation({timeout: 0})
 
             // Navigate to coupons
             LOG('Waiting for coupon page load.')
-            await page.waitForSelector('button[data-qa-automation="back-to-top-button"]')
+            await page.waitForSelector('button[data-qa-automation="back-to-top-button"]', {timeout: 0})
 
             // Load all the coupons
             LOG('Loading all the coupons.')
@@ -49,11 +49,16 @@ puppeteer
             }
 
             // Click all the coupons
+            let count = 0;
             LOG('Clicking all the coupons.')
             let buttons = await page.$$('button[data-qa-automation="button-Clip coupon"]')
             for (const button of buttons) {
                 await button.click()
+                count += 1
             }
+            LOG('Clicked %d coupons!', count)
+
+            await page.waitForNetworkIdle({timeout: 0})
 
             // Quit
             LOG('Done! Quitting browser.')
