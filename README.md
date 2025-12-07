@@ -1,14 +1,19 @@
 # publix-coupon-clipper
 ## What
-I just wanted to make it easy to get my Publix coupons because I can't be bothered to scan a QR code
-at the store. I would've handled login for you and made the whole operation headless but there is
-some bot detection on Publix's login portal. I had tried on the Python end Selenium, and then
-Undetected Chrome, but both were detected. I then went to the Javascript side after reading some
-internet discussion mentioning better success with `puppeteer` with `extra` and `stealth`. Alas,
-also no dice. I'm no expert on this by any means so maybe someone will have a better idea on how to
-get around it.
+I just wanted to make it easy to get my Publix coupons because I can't be bothered to scan a QR code at the store. There
+are two approaches in this repo:
+1. Python (preferred) using Selenium
+2. Javascript (legacy) using Puppeteer.
 
 ## How
+### Python
+1. (preferably in a venv) `python -m pip install -r requirements.txt`
+2. `python main.py`
+3. Update the generated `config.json` with your Publix login information
+4. `python main.py`
+5. Hopefully save some money, times are hard out there.
+
+### Javascript (node.js)
 1. Clone the repository
 2. In the project root, `npm install`
 3. Ensure `ts-node` is installed via `npm install -g ts-node`
@@ -21,9 +26,8 @@ get around it.
 - puppeteer
 - puppeteer-extra
 - puppeteer-extra-plugin-stealth
+### Python
+- Check `requirements.txt`
 
 ## Future
-Ideally I could get the login stuff working. Ideally it's working with Python and Undetected Chrome.
-I don't really enjoy the Javascript ecosystem for stuff like this, especially since my main OS is
-Windows so it can be a little quirky. It's working for me now though and hopefully does for you, so
-cheers.
+I may delete the JavaScript code now that the Python solution is working.
